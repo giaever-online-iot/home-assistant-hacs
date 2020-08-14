@@ -19,12 +19,13 @@ description: |
 grade: devel 
 confinement: devmode 
 
-slots:
+plugs:
   lib-hacs:
     interface: content
     content: lib-hacs
-    read: 
-      - $SNAP/hacs
+    target: 
+      - $SNAP_DATA/custom_components
+    default-provider: home-assistant-snap
 
 parts:
   hacs:
