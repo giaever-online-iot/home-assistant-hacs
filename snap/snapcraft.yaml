@@ -27,7 +27,7 @@ plugs:
     default-provider: home-assistant-snap
 
 hooks:
-  install:
+  post-refresh:
     plugs: [lib-hacs]
   remove:
     plugs: [lib-hacs]
@@ -41,9 +41,3 @@ parts:
       custom_components/hacs: hacs
     stage:
       - hacs
-  configure-hooks:
-    plugin: dump
-    source: hooks
-    organize:
-      install.sh: snap/hooks/post-refresh
-      uninstall.sh: snap/hooks/remove
