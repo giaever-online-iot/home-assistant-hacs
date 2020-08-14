@@ -17,7 +17,7 @@ description: |
     - Shortcuts to repositories/issue tracker
 
 grade: devel 
-confinement: devmode 
+confinement: strict
 
 plugs:
   lib-hacs:
@@ -26,6 +26,12 @@ plugs:
     target: 
       - $SNAP_DATA/custom_components
     default-provider: home-assistant-snap
+
+hooks:
+  install:
+    plugs: [lib-hacs]
+  remove:
+    plugs: [lib-hacs]
 
 parts:
   hacs:
@@ -36,3 +42,9 @@ parts:
       custom_components/hacs: hacs
     stage:
       - hacs
+  configure-hooks:
+    plugin: dump
+    source: hooks
+    organize:
+      install.sh: snap/hooks/post-refresh
+      uninstall.sh: snap/hooks/remove
