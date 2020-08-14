@@ -16,15 +16,14 @@ description: |
     - Manage(Install/Upgrade/Remove)
     - Shortcuts to repositories/issue tracker
 
-grade: devel 
+grade: devel
 confinement: strict
 
 plugs:
   lib-hacs:
     interface: content
     content: lib-hacs
-    target: 
-      - $SNAP_DATA/custom_components
+    target: $SNAP_DATA/custom_components
     default-provider: home-assistant-snap
 
 hooks:
