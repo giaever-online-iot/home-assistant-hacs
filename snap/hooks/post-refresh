@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 
-cp -rf "$SNAP/hacs" "$SNAP_DATA/custom_components/hacs"
+CC=$SNAP_DATA/custom_components
+
+mkdir $CC
+cp -rf "$SNAP/hacs" "$CC"
 echo "Copyied data to Home Assistant:"
 echo "From:     $SNAP/hacs -"
-echo "To:       $SNAP_DATA/custom_components/hacs"
+echo "To:       $CC/hacs"
