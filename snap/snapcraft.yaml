@@ -1,4 +1,4 @@
-name: hacs-snap
+name: home-assistant-hacs
 base: core20
 version: '1.3.3' 
 summary: Home Assistant Community Store 
@@ -20,7 +20,7 @@ grade: stable
 confinement: strict
 
 apps:
-  connected:
+  list:
     command: bin/app
     plugs: 
       - components
