@@ -19,20 +19,34 @@ description: |
 grade: devel
 confinement: strict
 
+apps:
+  connected:
+    command: bin/app
+    plugs: 
+      - components
+
 plugs:
-  lib-hacs:
+  components:
     interface: content
-    content: lib-hacs
+    content: components
     target: $SNAP_DATA/custom_components
     default-provider: home-assistant-snap
 
 hooks:
+  install:
+    plugs: [components]
   post-refresh:
-    plugs: [lib-hacs]
+    plugs: [components]
   remove:
-    plugs: [lib-hacs]
+    plugs: [components]
 
 parts:
+  connection:
+    plugin: dump
+    source: ./source
+    source-type: local
+    organize:
+      app: bin/app
   hacs:
     plugin: dump
     source: https://github.com/hacs/integration.git
