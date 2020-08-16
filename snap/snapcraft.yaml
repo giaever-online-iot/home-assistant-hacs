@@ -33,8 +33,6 @@ plugs:
     default-provider: home-assistant-snap
 
 hooks:
-  # install:
-  #   plugs: [components]
   connect-plug-components:
     plugs: [components]
   disconnect-plug-components:
