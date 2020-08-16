@@ -35,9 +35,9 @@ plugs:
 hooks:
   # install:
   #   plugs: [components]
-  post-refresh:
+  connect-plug-components:
     plugs: [components]
-  remove:
+  disconnect-plug-components:
     plugs: [components]
 
 parts:
