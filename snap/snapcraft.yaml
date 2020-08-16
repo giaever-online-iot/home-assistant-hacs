@@ -16,7 +16,7 @@ description: |
     - Manage(Install/Upgrade/Remove)
     - Shortcuts to repositories/issue tracker
 
-grade: devel
+grade: stable
 confinement: strict
 
 apps:
