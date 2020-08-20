@@ -33,6 +33,8 @@ plugs:
     default-provider: home-assistant-snap
 
 hooks:
+  post-refresh:
+    plugs: [components]
   connect-plug-components:
     plugs: [components]
   disconnect-plug-components:
