@@ -1,8 +1,8 @@
 #!/bin/sh -e
 
 CC="${SNAP_DATA}/custom_components/hacs"
-echo "Removing ${CC}"
+logger "Removing ${SNAP_NAME} - ${CC}"
 rm -rf "${CC}"
 if [ $? -eq 0 ]; then
-    echo "Removed: $SNAP_DATA/custom_components/hacs"
+    logger "Removed $SNAP_DATA/custom_components/hacs"
 fi

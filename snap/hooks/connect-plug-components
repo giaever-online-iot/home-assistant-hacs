@@ -2,6 +2,11 @@
 
 CC=$SNAP_DATA/custom_components
 
-echo "Copyied data to Home Assistant:"
-echo "From:     $SNAP/hacs -"
-echo "To:       $CC/hacs"
+cp -rf "${SNAP}/hacs" "${CC}"
+if [ $? -ne 0 ]; then
+    logger "Failed to copy data"
+else
+    logger "Copied ${SNAP_NAME} data to Home Assistant:"
+    logger "From:     $SNAP/hacs -"
+    logger "To:       $CC/hacs"
+fi
