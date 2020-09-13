@@ -1,6 +1,6 @@
 name: home-assistant-hacs
 base: core20
-version: '1.3.3' 
+version: '1.5.2' 
 summary: Home Assistant Community Store 
 description: |
   Manage (Install, track, upgrade) and discover custom elements for Home Assistant directly from the UI.
@@ -16,6 +16,7 @@ description: |
     - Manage(Install/Upgrade/Remove)
     - Shortcuts to repositories/issue tracker
 
+license: MIT
 grade: stable
 confinement: strict
 
