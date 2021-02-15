@@ -55,7 +55,7 @@ parts:
     organize:
       app: bin/app
       hooks: snap/hooks
-    stage:
+    stage-packages:
       - rsync
   hacs:
     plugin: dump
