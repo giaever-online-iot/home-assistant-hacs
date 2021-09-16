@@ -1,20 +1,45 @@
 name: home-assistant-hacs
 base: core20
-version: '1.15.1'
+version: '1.15.2'
 summary: Home Assistant Community Store 
 description: |
   Manage (Install, track, upgrade) and discover custom elements for Home Assistant directly from the UI.
 
-  What?
-  HACS is a integration that gives the user a powerful UI to handle downloads of custom integrations and plugins.
+  **What?*** HACS is a integration that gives the user a powerful UI to handle downloads of custom integrations and plugins.
 
   Highlights of what HACS can do:
 
-    - Help you discover new custom elements.
-    - Help you install (download) new custom elements.
-    - Help you keep track of your custom elements.
-    - Manage(Install/Upgrade/Remove)
-    - Shortcuts to repositories/issue tracker
+  - Help you discover new custom elements.
+  - Help you install (download) new custom elements.
+  - Help you keep track of your custom elements.
+  - Manage(Install/Upgrade/Remove)
+  - Shortcuts to repositories/issue tracker
+
+  **Installation**
+  1. Go into integrations and add HACS. Home Assistant will now try to install every python-package that HACS depends on. 
+  2. Step 1 might fail for an unknown reason, but **if so**:
+
+   Restart Home Assistant with `sudo snap restart home-assistant-snap` and wait for it to boot up. Go back and continue as described in _step 1._
+
+  3. You should be prompted with some check-boxes that you need to confirm and then a screen to connect to github api.
+
+  Wallah! HACS should be up running. :)
+
+  **Can't find HACS in the integration list?**
+
+  Open up a terminal and issue: 
+
+  ```
+  sudo snap connect home-assistant-hacs:components home-assistant-snap:components
+  ```
+
+  HACS should auto-connect, but sometimes it might fail. You also have to do this manually if you are using a self-snapped `home-assistant-snap`.
+
+  Please see https://git.giaever.org/joachimmg/home-assistant-hacs#install-from-the-snap-store-recommended for more details.
+
+  **UPDATES? Out of date?**
+
+  No worries. HACS is managed by HACS and Home Assistant. After installation you will be able to update HACS whenever there is a new update!
 
 license: MIT
 grade: stable
