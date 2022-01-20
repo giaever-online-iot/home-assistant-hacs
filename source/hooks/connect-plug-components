@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+CWD=$(pwd)
+
+export CONNECT=1
+$SNAP/bin/install
+
+cd "${CWD}"

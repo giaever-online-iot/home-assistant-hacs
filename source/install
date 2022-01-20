@@ -1,0 +1,62 @@
+#!/usr/bin/env bash
+
+function is_root {
+    if [ ${EUID:-$(id -u)} -eq 0 ]; then
+        return 0
+    fi
+    return 1
+}
+
+function lognecho {
+    for STR in "${@}"; do
+        logger "${STR}"
+        echo "${STR}"
+    done
+}
+
+function yn {
+    read -p "Procced? [y/n]: " CHOICE
+    case ${CHOICE} in
+        y)
+            return 0
+            ;;
+        n)
+            return 1
+            ;;
+        *)
+            yn
+            ;;
+    esac
+}
+
+is_root
+if [ $? -ne 0 ]; then
+    lognecho "Root is required. Run with sudo:" "$ sudo ${SNAP_NAME}.install"
+    exit 1
+fi
+
+if snapctl is-connected components; then
+    if [ -n ${CONNECT-} ]; then 
+        if [ -d "$SNAP_DATA/custom_components/hacs" ]; then
+            lognecho "${SNAP_NAME} is already installed. Re-installing it will overwrite current installation."
+            yn
+            if [ $? -ne 0 ]; then
+                exit 1
+            fi
+        fi
+    fi
+
+    lognecho "Installing ${SNAP_NAME} into your Home Assistant installation: ${SNAP_DATA}"
+
+    cd "${SNAP_DATA}"
+    export haPath="${SNAP_DATA}"
+    ${SNAP}/hacs
+    if [ $? -ne 0 ]; then
+        lognecho "Installation of ${SNAP_DATA} failed!"
+    else
+        lognecho "Installation of ${SNAP_DATA} successful."
+    fi
+else
+    lognecho "${SNAP_NAME}:components is not connected, connect with:" "$ snap connect ${SNAP_NAME}:components home-assistant-snap:components"
+    exit 1
+fi

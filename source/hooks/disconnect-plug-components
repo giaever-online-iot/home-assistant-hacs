@@ -1,0 +1,8 @@
+#!/bin/sh -e
+
+CC="${SNAP_DATA}/custom_components/hacs"
+logger "${SNAP_NAME} removing: - ${CC}"
+rm -rf "${CC}"
+if [ $? -eq 0 ]; then
+    logger "Removed ${CC}"
+fi
