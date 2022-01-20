@@ -52,10 +52,11 @@ architectures:
   - build-on: ppc64el
 
 apps:
-  list:
-    command: bin/app
-    plugs: 
+  install:
+    command: bin/install
+    plugs:
       - components
+      - network
 
 plugs:
   components:
@@ -65,28 +66,35 @@ plugs:
     default-provider: home-assistant-snap
 
 hooks:
-  post-refresh:
-    plugs: [components]
   connect-plug-components:
-    plugs: [components]
+    plugs: 
+      - components
+      - network
   disconnect-plug-components:
     plugs: [components]
 
+layout:
+  /etc/wgetrc:
+    bind-file: $SNAP/etc/wgetrc
+
+
 parts:
-  connection:
+  local:
     plugin: dump
     source: ./source
     source-type: local
     organize:
-      app: bin/app
+      install: bin/install
       hooks: snap/hooks
-    stage-packages:
-      - rsync
   hacs:
-    plugin: dump
-    source: https://github.com/hacs/integration.git
-    source-tag: ${SNAPCRAFT_PROJECT_VERSION}
-    organize:
-      custom_components/hacs: hacs
-    stage:
-      - hacs
+    plugin: nil
+    override-pull: |
+      wget https://get.hacs.xyz -O hacs
+    override-build: |
+      mv ${SNAPCRAFT_PART_BUILD}/hacs ${SNAPCRAFT_PART_INSTALL}/hacs
+      chmod +x ${SNAPCRAFT_PART_INSTALL}/hacs
+    build-packages:
+      - wget
+    stage-packages:
+      - wget
+      - unzip

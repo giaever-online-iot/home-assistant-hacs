@@ -1,7 +1,0 @@
-#!/usr/bin/env bash
-
-snapctl is-connected components
-
-echo "Connected: $?"
-
-ls -al $SNAP_DATA/custom_components

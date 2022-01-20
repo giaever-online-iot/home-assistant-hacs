@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-
-# if snapctl is-connected components; then
-#     source "${SNAP}/snap/hooks/connect-plug-custom_components"
-# fi
